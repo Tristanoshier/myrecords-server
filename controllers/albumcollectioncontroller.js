@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const CollectionRecord = require('../db').import('../models/recordcollection');
+const CollectionAlbum = require('../db').import('../models/albumcollection');
 
 // (page: collection) allows user to create a album for their collection
 router.post('/create', (req, res) => {
-    const recordFromRequest = {
+    const albumFromRequest = {
         name: req.body.name,
         artist: req.body.artist,
         year: req.body.year,
         userId: req.user.id
     }
-    CollectionRecord.create(recordFromRequest)
-        .then(record => res.status(200).json(record))
+    CollectionAlbum.create(albumFromRequest)
+        .then(album => res.status(200).json(album))
         .catch(err => res.status(500).json({error: err}))
 });
 
@@ -19,58 +19,58 @@ router.post('/create', (req, res) => {
 router.get('/find', (req, res) => {
     User.findOne({
         where: {id: req.user.id},
-        include: ['collectionRecords']
+        include: ['collectionAlbums']
     })
-    .then(record => res.status(200).json(record))
+    .then(album => res.status(200).json(album))
     .catch(err => res.status(500).json({error: err}))
 });
 
 // (page: search) get individual albums in collection by album name
 router.get('/find/name/:name', (req, res) => {
-    CollectionRecord.findOne({
+    CollectionAlbum.findAll({
         where: {name: req.params.name}
     })
-    .then(record => res.status(200).json(record))
+    .then(album => res.status(200).json(album))
     .catch(err => res.status(500).json({error: err}))
 });
 
 // (page: search) get individual albums in collection by artist
 router.get('/find/artist/:artist', (req, res) => {
-    CollectionRecord.findAll({
+    CollectionAlbum.findAll({
         where: {artist: req.params.artist}
     })
-    .then(record => res.status(200).json(record))
+    .then(album => res.status(200).json(album))
     .catch(err => res.status(500).json({error: err}))
 });
 
 // (page: search) get individual albums in collection by year
 router.get('/find/year/:year', (req, res) => {
-    CollectionRecord.findAll({
+    CollectionAlbum.findAll({
         where: {year: req.params.year}
     })
-    .then(record => res.status(200).json(record))
+    .then(album => res.status(200).json(album))
     .catch(err => res.status(500).json({error: err}))
 });
 
 // (page: collection) allows album information to be updated by the user
 router.put('/update/:name', (req, res) => {
-    CollectionRecord.update(req.body, {
+    CollectionAlbum.update(req.body, {
         where: {
             name: req.params.name
         }
     })
-    .then(record => res.status(200).json(record))
+    .then(album => res.status(200).json(album))
     .catch(err => res.json(req.errors))
 })
 
 // (page: collection) allows user to delete albums from their collection
 router.delete('/delete/:name', (req, res) => {
-    CollectionRecord.destroy({
+    CollectionAlbum.destroy({
         where: {
             name: req.params.name
         }
     })
-    .then(record => res.status(200).json(record))
+    .then(album => res.status(200).json(album))
     .catch(err => res.json({error : err}))
 })
 

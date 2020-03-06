@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const CollectionRecord = sequelize.define('collectionRecord', {
+    const wishlistAlbum = sequelize.define('wishlistAlbum', {
         name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -13,5 +13,5 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }
     })
-    return CollectionRecord;
+    return wishlistAlbum;
 }

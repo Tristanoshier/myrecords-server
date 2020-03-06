@@ -9,13 +9,13 @@ sequelize.authenticate()
     .catch((err => console.log(err)));
 
 User = sequelize.import('./models/user');
-CollectionRecords = sequelize.import('./models/recordcollection');
-WishlistRecords = sequelize.import('./models/recordwishlist');
+CollectionAlbums = sequelize.import('./models/albumcollection');
+WishlistAlbums = sequelize.import('./models/albumwishlist');
 
-CollectionRecords.belongsTo(User);
-WishlistRecords.belongsTo(User);
-User.hasMany(CollectionRecords);
-User.hasMany(WishlistRecords);
+CollectionAlbums.belongsTo(User);
+WishlistAlbums.belongsTo(User);
+User.hasMany(CollectionAlbums);
+User.hasMany(WishlistAlbums);
 
 
 module.exports = sequelize;
