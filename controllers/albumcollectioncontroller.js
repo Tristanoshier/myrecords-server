@@ -8,6 +8,7 @@ router.post('/create', (req, res) => {
         name: req.body.name,
         artist: req.body.artist,
         year: req.body.year,
+        color: req.body.color,
         userId: req.user.id
     }
     CollectionAlbum.create(albumFromRequest)
@@ -53,10 +54,10 @@ router.get('/find/year/:year', (req, res) => {
 });
 
 // (page: collection) allows album information to be updated by the user
-router.put('/update/:name', (req, res) => {
+router.put('/update/:id', (req, res) => {
     CollectionAlbum.update(req.body, {
         where: {
-            name: req.params.name
+            id: req.params.id
         }
     })
     .then(album => res.status(200).json(album))
@@ -64,10 +65,10 @@ router.put('/update/:name', (req, res) => {
 })
 
 // (page: collection) allows user to delete albums from their collection
-router.delete('/delete/:name', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
     CollectionAlbum.destroy({
         where: {
-            name: req.params.name
+            id: req.params.id
         }
     })
     .then(album => res.status(200).json(album))
