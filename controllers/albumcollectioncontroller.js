@@ -26,33 +26,6 @@ router.get('/find', (req, res) => {
     .catch(err => res.status(500).json({error: err}))
 });
 
-// (page: search) get individual albums in collection by album name
-router.get('/find/name/:name', (req, res) => {
-    CollectionAlbum.findAll({
-        where: {name: req.params.name}
-    })
-    .then(album => res.status(200).json(album))
-    .catch(err => res.status(500).json({error: err}))
-});
-
-// (page: search) get individual albums in collection by artist
-router.get('/find/artist/:artist', (req, res) => {
-    CollectionAlbum.findAll({
-        where: {artist: req.params.artist}
-    })
-    .then(album => res.status(200).json(album))
-    .catch(err => res.status(500).json({error: err}))
-});
-
-// (page: search) get individual albums in collection by year
-router.get('/find/year/:year', (req, res) => {
-    CollectionAlbum.findAll({
-        where: {year: req.params.year}
-    })
-    .then(album => res.status(200).json(album))
-    .catch(err => res.status(500).json({error: err}))
-});
-
 // (page: collection) allows album information to be updated by the user
 router.put('/update/:id', (req, res) => {
     CollectionAlbum.update(req.body, {

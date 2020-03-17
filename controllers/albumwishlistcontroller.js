@@ -26,10 +26,10 @@ router.get('/find', (req, res) => {
 });
 
 // (page: wishlist) allows album information to be updated by the user
-router.put('/update/:name', (req, res) => {
+router.put('/update/:id', (req, res) => {
     WishlistAlbum.update(req.body, {
         where: {
-            name: req.params.name
+            id: req.params.id
         }
     })
     .then(album => res.status(200).json(album))
@@ -37,10 +37,10 @@ router.put('/update/:name', (req, res) => {
 })
 
 // (page: wishlist) allows user to delete albums from their wishlist
-router.delete('/delete/:name', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
     WishlistAlbum.destroy({
         where: {
-            name: req.params.name
+            id: req.params.id
         }
     })
     .then(album => res.status(200).json(album))
