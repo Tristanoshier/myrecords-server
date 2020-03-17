@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         year: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        color: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     })
     return wishlistAlbum;

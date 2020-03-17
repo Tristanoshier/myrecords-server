@@ -8,6 +8,7 @@ router.post('/create', (req, res) =>{
         name: req.body.name,
         artist: req.body.artist,
         year: req.body.year,
+        color: req.body.color,
         userId: req.user.id
     }
     WishlistAlbum.create(albumFromRequest)
