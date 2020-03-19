@@ -1,2 +1,2 @@
-# myrecords-server
+# MyRecords-server
 
